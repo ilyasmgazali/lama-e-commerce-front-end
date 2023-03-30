@@ -21,7 +21,7 @@ const Left = styled.div`
     padding: 20px;
 `;
 
-const Logo = styled.div`
+const Logo = styled.h1`
     display: flex;
 `;
 
