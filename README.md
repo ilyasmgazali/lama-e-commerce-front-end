@@ -11,7 +11,7 @@ This is a front-end e-commerce clothing store built:
 
 BACKEND
 
--   The backend of this project is create in node.ts/express, is can be found in the github at address \***\*\_\_\_\_\*\***
+-   The backend of this project is created in node.ts/express, is can be found in the github at address \***\*\_\_\_\_\*\***
 
 PROJECT
 
