@@ -55,7 +55,7 @@ const FilterTitle = styled.span`
 type FilterColorProps = {
     color: string;
 };
-const FilterColor = styled.div`
+const FilterColor = styled.div<FilterColorProps>`
     width: 20px;
     height: 20px;
     border-radius: 50%;

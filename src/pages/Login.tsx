@@ -30,9 +30,9 @@ const Form = styled.form`
 `;
 
 const Input = styled.input`
-    flex: 1;
+    //flex: 1;
     min-width: 40%;
-    margin: 20px 10px 0px 0px;
+    margin: 10px 0;
     padding: 10px;
 `;
 
@@ -63,7 +63,7 @@ export default function Register() {
                     <Input placeholder="email" />
                     <Input placeholder="password" />
                     <Button>LOGIN</Button>
-                    <Link>DO NOT REMEMBER PASSWORD</Link>
+                    <Link>RESET PASSWORD</Link>
                     <Link>CREATE NEW ACCOUNT</Link>
                 </Form>
             </Wrapper>
