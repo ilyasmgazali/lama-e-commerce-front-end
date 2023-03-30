@@ -8,13 +8,15 @@ This is a front-end for an e-commerce clothing store
 -   There are 6 pages ( Home, Cart, Product, ProductList, Register, Login)
 -   There is a data.ts file for resources (images, etc), this is accessed via a .map method
 -   There is a responsive.ts file this is used for media queries to avoid code duplication, and increase reusability
--   The code is modular, which reusable components such as navbar and footer etc
+-   The code is modular, with reusable components such as navbar and footer etc
 -   This code can be refactored by creating smaller components in the Register/Login page (although styling is different, but can be seperated), and maybe using data.ts file for background of these pages, as this project is not too large, this may not be necessary
 
--   BACKEND
--   The backend of this project is create in node.ts/express, is can be found in the github at address ****\_\_\_\_****
+BACKEND
 
--   PROJECT
+-   The backend of this project is create in node.ts/express, is can be found in the github at address \***\*\_\_\_\_\*\***
+
+PROJECT
+
 -   This is a fullstack using the MERN stack (MongoDB, Express.ts, React.ts, Node.ts), using typescript for both the front-end and back-end
 
 # Getting Started with Create React App
