@@ -82,7 +82,7 @@ export default function Navbar() {
                     </Left>
                     <Center>
                         {" "}
-                        <Logo> LAMA. </Logo>{" "}
+                        <Logo> GAZA. </Logo>{" "}
                     </Center>
                     <Right>
                         <MenuItem>REGISTER</MenuItem>
