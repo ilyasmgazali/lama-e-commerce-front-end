@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
+//import Product from "./Product";
 import styled from "styled-components";
 import { Add, Remove } from "@mui/icons-material/";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import { publicRequest } from "../requestMethods";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
+
+/**
+ *           MINOR EDIT: ADD BORDER, 0.2PX? AROUND COLOUR, DOES NOT SHOW WHEN WHITE!
+ *
+ *
+ *
+ */
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -78,7 +89,8 @@ const AddContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    ${mobile({ width: "100%" })}
+
+    ${mobile({ width: "100%" })};
 `;
 const AmountContainer = styled.div`
     display: flex;
@@ -106,8 +118,37 @@ const Button = styled.button`
         background-color: #f8f4f4;
     }
 `;
+interface Product {
+    _id: number;
+    //_id: number; //already have id, but giving error, look into it
+    title: string;
+    desc: string;
+    img: string;
+    categories?: string[];
+    size?: string[];
+    color?: string[];
+    price: number;
+    inStock: boolean;
+    [key: string]: any;
+}
 
 export default function Product() {
+    const location = useLocation();
+    const id = location.pathname.split("/")[2]; // catergory from url
+
+    const [product, setProduct] = useState<Product | null>(null);
+
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const res = await publicRequest.get(`products/find/${id}`);
+                setProduct(res.data);
+            } catch (error) {}
+        };
+        getProduct();
+    }, [id]);
+    console.log(product);
+
     return (
         <Container>
             <Navbar />
@@ -115,33 +156,31 @@ export default function Product() {
 
             <Wrapper>
                 <ImgContainer>
-                    <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
+                    <Image src={product?.img ?? "Clothes image"} />
                 </ImgContainer>
                 <InfoContainer>
-                    <Title>Denim Jumpsuit</Title>
-                    <Desc>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Soluta, ipsam cumque commodi explicabo ducimus
-                        adipisci sint! Ut explicabo vero, veniam praesentium,
-                        obcaecati velit labore laborum non molestiae, facere
-                        beatae quo?
-                    </Desc>
+                    <Title>{product && product.title}</Title>
+                    <Desc>{product && product.desc}</Desc>
                     <Price>£20</Price>
                     <FliteredContainer>
                         <Filter>
                             <FilterTitle>Color</FilterTitle>
-                            <FilterColor color="black" />
-                            <FilterColor color="darkblue" />
-                            <FilterColor color="gray" />
+                            {product &&
+                                product.color &&
+                                product.color.map((c) => (
+                                    <FilterColor color={c} key={c} />
+                                ))}
                         </Filter>
                         <Filter>
                             <FilterTitle>Size</FilterTitle>
                             <FilterSize>
-                                <FilterSizeOption>XS</FilterSizeOption>
-                                <FilterSizeOption>S</FilterSizeOption>
-                                <FilterSizeOption>M</FilterSizeOption>
-                                <FilterSizeOption>L</FilterSizeOption>
-                                <FilterSizeOption>XL</FilterSizeOption>
+                                {product &&
+                                    product.size &&
+                                    product.size.map((s) => (
+                                        <FilterSizeOption key={s}>
+                                            {s}
+                                        </FilterSizeOption>
+                                    ))}
                             </FilterSize>
                         </Filter>
                     </FliteredContainer>

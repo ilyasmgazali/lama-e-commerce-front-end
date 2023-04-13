@@ -44,7 +44,8 @@ export default function ProductList() {
         const value = e.target.value;
         setFilter({
             ...filters,
-            [e.target.name]: value,
+            [e.target.name]:
+                e.target.name === "color" ? value.toLocaleLowerCase() : value,
         });
     };
 
@@ -56,10 +57,12 @@ export default function ProductList() {
             <FilterContainer>
                 <Filter>
                     <FilterText>Filter Products:</FilterText>
-                    <Select name="color" onChange={handleFilters}>
-                        <Option disabled selected>
-                            Color
-                        </Option>
+                    <Select
+                        defaultValue="Color"
+                        name="color"
+                        onChange={handleFilters}
+                    >
+                        <Option disabled>Color</Option>
                         <Option>White</Option>
                         <Option>Black</Option>
                         <Option>Red</Option>
@@ -67,10 +70,12 @@ export default function ProductList() {
                         <Option>Yellow</Option>
                         <Option>Green</Option>
                     </Select>
-                    <Select name="size" onChange={handleFilters}>
-                        <Option disabled selected>
-                            Size
-                        </Option>
+                    <Select
+                        defaultValue="Size"
+                        name="size"
+                        onChange={handleFilters}
+                    >
+                        <Option disabled>Size</Option>
                         <Option>XS</Option>
                         <Option>S</Option>
                         <Option>M</Option>

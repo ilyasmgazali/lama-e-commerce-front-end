@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled, { CSSProperties } from "styled-components";
 // import ArrowLeftOutlinedIcon from "@mui/icons-material/ArrowLeftOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -67,7 +68,7 @@ const Icon = styled.div`
 
 interface ProductItemProps {
     item: {
-        id: number;
+        _id: number;
         title: string;
         img: string;
     };
@@ -83,7 +84,9 @@ export default function Product({ item }: ProductItemProps) {
                     <ShoppingCartOutlinedIcon />
                 </Icon>
                 <Icon>
-                    <SearchOutlinedIcon />
+                    <Link to={`/product/${item._id}`}>
+                        <SearchOutlinedIcon />
+                    </Link>
                 </Icon>
                 <Icon>
                     <FavoriteBorderOutlinedIcon />
